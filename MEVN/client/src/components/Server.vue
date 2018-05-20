@@ -1,23 +1,28 @@
 <template>
-    <pre>{{ server }}</pre>
+    <pre>{{ server}}</pre>
 </template>
 <script>
-import PostsService from '@/services/ApiServer'
+import apiServer from '@/services/apiServer'
+//import axios from 'axios';
 
 export default {
   name: 'server',
-  data(){
+  data () {
       return{
-          server:[]
+        server: []
       }
   },
   mounted () {
-    this.getServer()
+   this.getServer();
+   /*  axios.get('http://localhost:3000/server')
+        .then((respuesta) => {
+            this.server = respuesta.data;
+        })*/
   },
     methods: {
     async getServer () {
-      const response = await PostsService.fetchPosts()
-      this.server = response.data.posts
+      const response = await apiServer.fetchServer()
+      this.server = response.data
     },
   }
 }
